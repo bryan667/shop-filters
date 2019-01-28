@@ -1,12 +1,59 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {itemsFilters, itemsForSale} from './vars'
+import Accordion from './accordion'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class App extends Component {
+
+    state = {
+        filters: {
+            Processor: {
+                brands: []
+            },
+            Motherboard:{
+                brands: []
+            },
+            Memory:{
+                brands: [],
+                RAMsize: []
+            }
+        }
+    }
+
+    handleFilters = (filters, category) => {
+        const newFilters = {...this.state.filters}
+        newFilters[category] = filters
+
+        this.showFilteredResults(newFilters)
+
+        this.setState({
+            filters: newFilters
+        })
+    }
+
+    render() {
+      return (
+        <div>
+            <Accordion
+                name={'Processor'}
+                category={itemsFilters.Processor}
+                handleFilters={(filters)=> this.handleFilters(filters,'Processor')}
+            />
+            <Accordion
+                name={'Motherboard'}
+                category={itemsFilters.Motherboard}
+                handleFilters={(filters)=> this.handleFilters(filters,'Motherboard')}
+            />
+            <Accordion
+                name={'Memory'}
+                category={itemsFilters.Memory}
+                handleFilters={(filters)=> this.handleFilters(filters,'Memory')}    
+            />
+        </div>
+      );
+    }
+}
+
+
+ReactDOM.render(<App />, document.getElementById('root'))
