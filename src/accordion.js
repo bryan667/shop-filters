@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './css/accordion.css'
 
 class Accordion extends Component {
 
@@ -22,6 +21,24 @@ class Accordion extends Component {
         }
     }
 
+    toggleCheck = (subcategory, id) => {        
+        const { checked } = this.state
+        const currentIndex = checked.indexOf(id)
+        const newChecked = [...checked]
+
+        if (currentIndex === -1) {
+            newChecked.push(id)
+        } else {
+            newChecked.splice(currentIndex, 1)
+        }
+
+        this.setState({
+            checked: newChecked
+        }, () => {
+            this.props.handleFilters(id, subcategory)
+        })
+    }
+
     renderCheckboxes = (category) => {
         const render = []        
         for (let subcategory in category) {
@@ -33,32 +50,14 @@ class Accordion extends Component {
                     {items.name}
                     <input type='checkbox'
                         name={items.id} 
-                        checked={this.state.checked.map(function(e) { return e.id }).indexOf(items.id) !== -1}
-                        onChange={()=> this.toggleCheck(subcategory, items.id)}
+                        checked={this.state.checked.indexOf(items.id) !== -1}
+                        onChange={()=> this.toggleCheck(items.subcat, items.id)}
                     />
                 </div>
                 )
             ))
         }
         return render
-    }
-
-    toggleCheck = (subcategory, id) => {        
-        const { checked } = this.state
-        const currentIndex = checked.map(function(e) { return e.id }).indexOf(id)
-        const newChecked = [...checked]
-
-        if (currentIndex === -1) {
-            newChecked.push({subcategory, id})
-        } else {
-            newChecked.splice(currentIndex, 1)
-        }
-
-        this.setState({
-            checked: newChecked
-        }, () => {
-            console.log(this.state.checked)
-        })
     }
 
     render() {
