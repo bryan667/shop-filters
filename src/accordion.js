@@ -69,7 +69,7 @@ class Accordion extends Component {
                     {name}
                 </button>
                 <div className='showall'>
-                    Show All
+                    Show
                     <input type='checkbox'
                         defaultChecked={true}
                         onChange={()=> {
