@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
+import Pages from './pages'
 import {showFilteredResults} from './function'
 import {itemsFilters, itemsForSaleMain} from './vars'
 import Accordion from './accordion'
@@ -28,7 +29,7 @@ class App extends Component {
             Processor: true,
             Motherboard: true,
             Memory: true,
-            items: []
+            items: {}
         }
     }
 
@@ -117,10 +118,9 @@ class App extends Component {
                     />
                 </div>
                 <div>
-                    <textarea className='textarea'
-                        value={JSON.stringify(showItems.items, null ,1)}
-                        readOnly
-                    ></textarea>
+                    <Pages 
+                        items={showItems.items}
+                    />
                 </div>
             </div>
         </div>

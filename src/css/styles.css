@@ -28,6 +28,11 @@
     transition: max-height 0.2s ease-out;
   }
 
+  .itemblock {
+    background-color: rgb(240, 240, 240);
+    border: 3px solid white;
+  }
+
   .label {
     text-transform: uppercase;
     background-color: rgb(196, 196, 196);
