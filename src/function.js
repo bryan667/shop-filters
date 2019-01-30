@@ -1,15 +1,68 @@
-
 export const showFilteredResults = (filters, itemsForSale) => {
     const newItemSale = {}
-    const tempProc = []
-    const tempMem = []
 
+    //==== PROCESSOR ====//
+    let finalProc = itemsForSale.Processor
+    let tempProc = []
 
-    //PROCESSOR
-    if (filters.Processor.brands.length > 0) {
-        filters.Processor.brands.forEach((search, i)=> {
-            itemsForSale.Processor.forEach((item, i)=> {
-                if (search === item.brandID) {
+    for (let key in filters.Processor) {
+        if (filters.Processor[key].length > 0) {
+            loopProc(key)
+            finalProc =  tempProc
+            tempProc = []
+        }
+    }
+
+    function loopProc(key){
+        filters.Processor[key].forEach((search, i)=> {
+            finalProc.forEach((item, i)=> {
+                if (search === item[key]) {
+                    const index = tempProc.findIndex(x => x.id===item.id)
+                    if (index === -1){tempProc.push(item)}
+                }
+            })
+        })
+    }
+
+    //==== MOTHERBOARD ====//
+    let finalMobo = itemsForSale.Motherboard
+    let tempMobo = []
+    for (let key in filters.Motherboard) {
+        if (filters.Motherboard[key].length > 0) {
+            loopMobo(key)
+            finalMobo =  tempMobo
+            tempMobo = []
+        }
+    }
+
+    function loopMobo(key) {
+        filters.Motherboard[key].forEach((search, i)=> {
+            finalMobo.forEach((item, i)=> {
+                if (search === item[key]) {
+                    const index = tempMobo.findIndex(x => x.id===item.id)
+                    if (index === -1){tempMobo.push(item)}
+                }
+            })
+        })
+    }
+
+    //==== MEMORY ====//
+    //filters.Memory.brandID []
+    //filters.Memory.ramID []
+    let finalMem = itemsForSale.Memory
+    let tempMem = []
+    for (let key in filters.Memory) {
+        if (filters.Memory[key].length > 0) {
+            loopMem(key)
+            finalMem =  tempMem
+            tempMem = []
+        }
+    }
+
+    function loopMem(key) {
+        filters.Memory[key].forEach((search, i)=> {
+            finalMem.forEach((item, i)=> {
+                if (search === item[key]) {
                     const index = tempMem.findIndex(x => x.id===item.id)
                     if (index === -1){tempMem.push(item)}
                 }
@@ -17,57 +70,7 @@ export const showFilteredResults = (filters, itemsForSale) => {
         })
     }
 
-    //filters.Memory.brands []
-    //filters.Memory.RAMsize []
-    for (let key in filters.Memory) {
-        if (key.length > 0) {
-            filters.Memory[key].forEach((search, i)=> {
-                itemsForSale.Memory.forEach((item, i)=> {
-                    if (search === item.ramID) {
-                        const index = tempMem.findIndex(x => x.id===item.id)
-                        if (index === -1){tempMem.push(item)}
-                    }
-                })
-            })
-        }
-    }   
-
-    // RAM
-    // if (filters.Memory.brands.length > 0 && filters.Memory.RAMsize.length > 0) {
-    //     filters.Memory.brands.forEach((search, i)=> {
-    //         itemsForSale.Memory.forEach((item, i)=> {
-    //             if (search === item.brandID) {
-    //                 =======//
-    //                 filters.Memory.RAMsize.forEach((ramsize, i)=> {
-    //                     if (ramsize === item.ramID) {
-    //                         const index = tempMem.findIndex(x => x.id===item.id)
-    //                         if (index === -1){tempMem.push(item)}
-    //                     }
-    //                 })
-    //             }
-    //         })
-    //     })
-    // } else if (filters.Memory.RAMsize.length > 0) {
-    //     filters.Memory.RAMsize.forEach((search, i)=> {
-    //         itemsForSale.Memory.forEach((item, i)=> {
-    //             if (search === item.ramID) {
-    //                 const index = tempMem.findIndex(x => x.id===item.id)
-    //                 if (index === -1){tempMem.push(item)}
-    //             }
-    //         })
-    //     })
-    // } else if (filters.Memory.brands.length > 0) {
-    //     filters.Memory.brands.forEach((search, i)=> {
-    //         itemsForSale.Memory.forEach((item, i)=> {
-    //             if (search === item.brandID) {
-    //                 const index = tempMem.findIndex(x => x.id===item.id)
-    //                 if (index === -1){tempMem.push(item)}
-    //             }
-    //         })
-    //     })
-    // }
-
-
-    console.log('tempProc:', tempProc)
-    console.log('tempMem:', tempMem)
+    console.log('finalMobo:', finalMobo)
+    console.log('finalMem:', finalMem)
+    console.log('finalProc:', finalProc)
 }

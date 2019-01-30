@@ -43,7 +43,7 @@ class App extends Component {
             newFilters[category][subcat].splice(currentIndex, 1)
         }
 
-        // showFilteredResults(newFilters, itemsForSale)
+        showFilteredResults(newFilters, itemsForSale)
 
         this.setState({
             filters: newFilters
