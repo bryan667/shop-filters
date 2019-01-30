@@ -64,11 +64,22 @@ class Accordion extends Component {
         const {name, category} = this.props
         return (
         <React.Fragment>
-            <button className="accordion" 
-                onClick={() => this.clickAccordion()}>{name}
-            </button>
+                <button className="accordion" 
+                    onClick={() => this.clickAccordion()}>
+                    {name}
+                </button>
+                <div className='showall'>
+                    Show All
+                    <input type='checkbox'
+                        defaultChecked={true}
+                        onChange={()=> {
+                            this.checked = !this.checked
+                            this.props.showAll(!this.checked)
+                        }}
+                    />
+                </div>
                 <div className="panel"
-                    id={this.props.name}
+                    id={name}
                     style={{
                         display: this.state.display,
                         maxHeight: this.state.maxHeight                     

@@ -3,7 +3,7 @@ export const itemsFilters = {
         brands: [
             {name: 'Intel', id: 'procIntel', subcat: 'brandID'},
             {name: 'AMD', id: 'procAMD', subcat: 'brandID'}
-        ]
+        ],
     },
     Motherboard:{
         brands: [
@@ -12,6 +12,10 @@ export const itemsFilters = {
             {name: 'Gigabyte', id: 'moboGigabyte', subcat: 'brandID'},
             {name: 'ASRock', id: 'moboASRock', subcat: 'brandID'},
             {name: 'EVGA', id: 'moboEVGA', subcat: 'brandID'},
+        ],
+        socket: [
+            {name: 'Intel', id: 'Intel', subcat: 'socketID'},
+            {name: 'AMD', id: 'AMD', subcat: 'socketID'}
         ]
     },
     Memory:{
@@ -32,7 +36,7 @@ export const itemsFilters = {
     } 
 }
 
-export const itemsForSale = {
+export const itemsForSaleMain = {
     Processor: [
         {id: '1', name: 'StrongIntel', brand: 'Intel', brandID: 'procIntel'},
         {id: '2', name: 'i9', brand: 'Intel', brandID: 'procIntel'},
@@ -47,22 +51,22 @@ export const itemsForSale = {
         {id: '11', name: 'Ryzen Threadripper', brand: 'AMD', brandID: 'procAMD'},
     ],
     Motherboard:[
-        {id: '1', name: 'ASROCK A320M-HDV', brand: 'ASRock', brandID: 'moboASRock', socket: 'AMD'},
-        {id: '2', name: 'ASROCK FM2A68M-DG3+', brand: 'ASRock', brandID: 'moboASRock', socket: 'AMD'},
-        {id: '3', name: 'ASROCK FM2A88M-HD+', brand: 'ASRock', brandID: 'moboASRock', socket: 'AMD'},
-        {id: '4', name: 'ASUS A68HM-K AMD', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '5', name: 'ASUS EX-A320M GAMING AM4', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '6', name: 'ASUS PRIME A320M-K', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '7', name: 'ASUS PRIME B350-PLUS', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '8', name: 'ASUS ROG CROSSHAIR VI EXTREME', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '9', name: 'ASUS ROG ZENITH EXTREME', brand: 'Asus', brandID: 'moboAsus', socket: 'AMD'},
-        {id: '10', name: 'MSI Z270 CAMO SQUAD LGA1151', brand: 'MSI', brandID: 'moboMSI', socket: 'Intel'},
-        {id: '11', name: 'MSI Z270 GAMING M3 LGA1151', brand: 'MSI', brandID: 'moboMSI', socket: 'Intel'},
-        {id: '12', name: 'MSI Z270 TOMAHAWK LGA 1151', brand: 'MSI', brandID: 'moboMSI', socket: 'Intel'},
-        {id: '13', name: 'MSI H310M PRO-VDH PLUS', brand: 'MSI', brandID: 'moboMSI', socket: 'Intel'},
-        {id: '14', name: 'GIGABYTE Z390 AORUS XTREME', brand: 'Gigabyte', brandID: 'moboGigabyte', socket: 'Intel'},
-        {id: '15', name: 'EVGA B360 112-CS-E365-KR LGA 1151', brand: 'EVGA', brandID: 'moboEVGA', socket: 'Intel'},
-        {id: '16', name: 'EVGA X299 DARK 151-SX-E299-KR LGA 2066', brand: 'EVGA', brandID: 'moboEVGA', socket: 'Intel'}
+        {id: '1', name: 'ASROCK A320M-HDV', brand: 'ASRock', brandID: 'moboASRock', socketID: 'AMD'},
+        {id: '2', name: 'ASROCK FM2A68M-DG3+', brand: 'ASRock', brandID: 'moboASRock', socketID: 'AMD'},
+        {id: '3', name: 'ASROCK FM2A88M-HD+', brand: 'ASRock', brandID: 'moboASRock', socketID: 'AMD'},
+        {id: '4', name: 'ASUS A68HM-K AMD', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '5', name: 'ASUS EX-A320M GAMING AM4', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '6', name: 'ASUS PRIME A320M-K', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '7', name: 'ASUS PRIME B350-PLUS', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '8', name: 'ASUS ROG CROSSHAIR VI EXTREME', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '9', name: 'ASUS ROG ZENITH EXTREME', brand: 'Asus', brandID: 'moboAsus', socketID: 'AMD'},
+        {id: '10', name: 'MSI Z270 CAMO SQUAD LGA1151', brand: 'MSI', brandID: 'moboMSI', socketID: 'Intel'},
+        {id: '11', name: 'MSI Z270 GAMING M3 LGA1151', brand: 'MSI', brandID: 'moboMSI', socketID: 'Intel'},
+        {id: '12', name: 'MSI Z270 TOMAHAWK LGA 1151', brand: 'MSI', brandID: 'moboMSI', socketID: 'Intel'},
+        {id: '13', name: 'MSI H310M PRO-VDH PLUS', brand: 'MSI', brandID: 'moboMSI', socketID: 'Intel'},
+        {id: '14', name: 'GIGABYTE Z390 AORUS XTREME', brand: 'Gigabyte', brandID: 'moboGigabyte', socketID: 'Intel'},
+        {id: '15', name: 'EVGA B360 112-CS-E365-KR LGA 1151', brand: 'EVGA', brandID: 'moboEVGA', socketID: 'Intel'},
+        {id: '16', name: 'EVGA X299 DARK 151-SX-E299-KR LGA 2066', brand: 'EVGA', brandID: 'moboEVGA', socketID: 'Intel'}
     ],
     Memory:[
         {id: '1', name: 'Kingston 2 GB', brand: 'Kingston', brandID: 'ramKingston', ramID: 'ram2GB'},

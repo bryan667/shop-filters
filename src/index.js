@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import {showFilteredResults} from './function'
-import {itemsFilters, itemsForSale} from './vars'
+import {itemsFilters, itemsForSaleMain} from './vars'
 import Accordion from './accordion'
 
 import './css/styles.css'
@@ -12,24 +12,35 @@ class App extends Component {
     state = {
         filters: {
             Processor: {
-                brandID: []
+                brandID: [],
             },
             Motherboard:{
-                brandID: []
+                brandID: [],
+                socketID: []
             },
             Memory:{
                 brandID: [],
                 ramID: []
             }
         },
-        itemsForSale: {
-
+        itemsForSale: {},
+        showItems: {
+            Processor: true,
+            Motherboard: true,
+            Memory: true,
+            items: []
         }
     }
 
     componentDidMount() {
         this.setState({
-            itemsForSale: itemsForSale
+            itemsForSale: itemsForSaleMain,
+            showItems: {
+                Processor: true,
+                Motherboard: true,
+                Memory: true,
+                items: itemsForSaleMain
+            }
         })
     }
 
@@ -43,15 +54,45 @@ class App extends Component {
             newFilters[category][subcat].splice(currentIndex, 1)
         }
 
-        showFilteredResults(newFilters, itemsForSale)
+        const newItemSale = showFilteredResults(newFilters, itemsForSaleMain)
 
         this.setState({
-            filters: newFilters
+            filters: newFilters,
+            itemsForSale: newItemSale
+        }, ()=> {
+            this.renderShow()
         })
     }
 
+    showAll = (boolean, category) => {
+        const tempShow = {...this.state.showItems}
+        tempShow[category] = boolean
+
+        this.setState({            
+            showItems: tempShow
+        },()=> {
+            this.renderShow()
+        })
+    }
+
+    renderShow = () => {
+        const tempItemSale = {...this.state.itemsForSale}
+        const tempShow = {...this.state.showItems}
+
+        for (let key in tempItemSale) {
+            if (tempShow[key] === false) {
+                tempItemSale[key] = []
+            }
+        }
+
+        tempShow.items = tempItemSale
+        this.setState({            
+            showItems: tempShow
+        }) 
+    }
+
     render() {
-        const {itemsForSale} = this.state
+        const {showItems} = this.state
         return (
         <div>
             <div className='cont'>
@@ -60,21 +101,24 @@ class App extends Component {
                         name={'Processor'}
                         category={itemsFilters.Processor}
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Processor')}
+                        showAll={(boolean)=> this.showAll(boolean, 'Processor')}
                     />
                     <Accordion
                         name={'Motherboard'}
                         category={itemsFilters.Motherboard}
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Motherboard')}
+                        showAll={(boolean)=> this.showAll(boolean, 'Motherboard')}
                     />
                     <Accordion
                         name={'Memory'}
                         category={itemsFilters.Memory}
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Memory')}    
+                        showAll={(boolean)=> this.showAll(boolean, 'Memory')}
                     />
                 </div>
                 <div>
                     <textarea className='textarea'
-                        value={JSON.stringify(itemsForSale, null ,1)}
+                        value={JSON.stringify(showItems.items, null ,1)}
                         readOnly
                     ></textarea>
                 </div>

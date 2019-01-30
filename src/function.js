@@ -70,7 +70,9 @@ export const showFilteredResults = (filters, itemsForSale) => {
         })
     }
 
-    console.log('finalMobo:', finalMobo)
-    console.log('finalMem:', finalMem)
-    console.log('finalProc:', finalProc)
+    newItemSale.Processor = finalProc
+    newItemSale.Motherboard = finalMobo
+    newItemSale.Memory = finalMem
+
+    return newItemSale
 }
