@@ -14,6 +14,10 @@
   .showall {
     background-color: #ccc;
   }
+
+  .showall input:hover {
+    cursor: pointer;
+  }
   
   .active, .accordion:hover {
     background-color: #ccc;
@@ -26,6 +30,10 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+  }
+
+  .panel input:hover {
+    cursor: pointer;
   }
 
   .itemblock {
@@ -67,4 +75,8 @@
 
   .pageinactive {
     display: none;
+  }
+
+  .buttonactive {
+    background-color: rgb(187, 215, 233);
   }

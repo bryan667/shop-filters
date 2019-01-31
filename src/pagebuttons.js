@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
 
 class PageButtons extends Component {
-    state = {
-        currentPage: 1
-    }
 
-    componentDidMount(){
-        this.setState({
-            currentPage: this.props.paginate.currentPage
+    renderButtons = () => {
+        const buttons = this.props.paginate.pages.map((item, i)=> {
+            let activeClass = ''
+            if(item === this.props.paginate.currentPage) {
+                activeClass = 'buttonactive'
+            }
+            
+            return <button
+                        onClick={(e)=> this.props.changePage(parseInt(e.target.id))}
+                        id={item}
+                        key={item}
+                        className={activeClass}
+                    >{item}
+                    </button>
         })
+        return buttons
     }
-
-    changePage = (event) => {
-        this.setState({
-            currentPage: parseInt(event.target.id)
-        }, ()=> {
-            this.props.changePage(this.state.currentPage)
-        })
-    }
-
-    renderButtons = () => (
-        this.props.paginate.pages.map((item, i)=> (
-            <button
-                onClick={(e)=> this.changePage(e)}
-                id={item}
-                key={item}
-            >{item}</button>
-        ))
-    )
 
     render() {
         return (
             <div>
+                <button
+                    onClick={()=> this.props.leftB()}
+                >&lt;</button>
                 {this.renderButtons()}
+                <button
+                    onClick={()=> this.props.rightB()}
+                >&gt;</button>
             </div>
         );
     }

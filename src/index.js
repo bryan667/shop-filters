@@ -35,13 +35,13 @@ class App extends Component {
         paginate: {            
             currentPage: 1,
             endIndex: 4,
-            endPage: 3,
+            endPage: 5,
             pageSize: 5,
-            pages: [1, 2, 3],
+            pages: [1, 2, 3, 4, 5],
             startIndex: 0,
             startPage: 1,
-            totalItems: 11,
-            totalPages: 3,
+            totalItems: 47,
+            totalPages: 10,
         }
     }
 
@@ -50,7 +50,9 @@ class App extends Component {
         for (let key in itemsForSaleMain) {
             totalItems = totalItems + itemsForSaleMain[key].length
         }
-        const paginateResults = Paginate(totalItems, 1, 5 /*Pagesize*/, 5)
+
+        //initial Paginate(totalItems, currentPage, pageSize, maxPages)
+        const paginateResults = Paginate(totalItems, 1, 5, 5)
 
         this.setState({
             itemsForSale: itemsForSaleMain,
@@ -98,6 +100,7 @@ class App extends Component {
     renderShow = () => {
         const tempItemSale = {...this.state.itemsForSale}
         const tempShow = {...this.state.showItems}
+        const paginate = {...this.state.paginate}
         let totalItems = 0
 
         for (let key in tempItemSale) {
@@ -106,10 +109,13 @@ class App extends Component {
             }
             totalItems = totalItems + tempItemSale[key].length
         }
+
         tempShow.items = tempItemSale
-        const paginateResults = Paginate(totalItems, 1, 5, 5)
+
+        //Paginate(totalItems, currentPage, pageSize, maxPages)
+        const paginateResults = Paginate(totalItems, 1, paginate.pageSize, 5)
         
-        this.setState({            
+        this.setState({
             showItems: tempShow,
             paginate: paginateResults
         }) 
@@ -119,6 +125,22 @@ class App extends Component {
         const paginate = this.state.paginate
         paginate.currentPage = parseInt(page)
 
+        this.setState({
+            paginate
+        })
+    }
+
+    leftB =() => {
+        const tempPaginate = {...this.state.paginate}
+        const paginate = Paginate(tempPaginate.totalItems, tempPaginate.currentPage-1, tempPaginate.pageSize, 5)
+        this.setState({
+            paginate
+        })
+    }
+
+    rightB =() => {
+        const tempPaginate = {...this.state.paginate}
+        const paginate = Paginate(tempPaginate.totalItems, tempPaginate.currentPage+1, tempPaginate.pageSize, 5)
         this.setState({
             paginate
         })
@@ -155,11 +177,14 @@ class App extends Component {
                         items={showItems.items}
                         paginate={this.state.paginate}
                     />
+                    <div>{`Results: ${this.state.paginate.totalItems}`}</div>
                 </div>
                 <div>
                     <PageButtons 
                         paginate={this.state.paginate}
                         changePage={(page)=> this.changePage(page)}
+                        leftB={()=> this.leftB() }
+                        rightB={()=> this.rightB()}
                     />
                 </div>
             </div>

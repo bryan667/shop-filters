@@ -61,10 +61,9 @@ class Pages extends Component {
 
         renderMe.forEach((item, index)=> {
             blockCount++
-            if (index % pageSize === 0 && index !== 0) {
+            if (blockCount === 5) {
                 pageCount++
-                blockCount = blockCount - pageSize
-
+                blockCount = 0
                 //if this pageGroup is the currentPage, apply className .pageactive
                 if (pageCount === activePage) {
                     pageBlocks.push(
@@ -81,7 +80,6 @@ class Pages extends Component {
                         </div>
                     )
                 }
-
             //rendering the last page
             } else if (index === (renderMe.length-1)) {
                 pageCount++
@@ -89,14 +87,14 @@ class Pages extends Component {
                     pageBlocks.push(
                         <div className={`pageactive`} key={`page${pageCount}`}>
                         Awlast
-                        {this.lastPage(blockCount, renderMe, index)}
+                        {this.lastPage(renderMe, index, blockCount)}
                         </div>
                     )
                 } else {
                     pageBlocks.push(
                         <div className={`pageinactive`} key={`page${pageCount}`}>
                         Awlast
-                        {this.lastPage(blockCount, renderMe, index)}
+                        {this.lastPage(renderMe, index, blockCount)}
                         </div>
                     )
                 }
@@ -106,18 +104,18 @@ class Pages extends Component {
     }
 
     //render normal pages and then last page
-    page = (renderMe, index, pageCount) => {
+    page = (renderMe, index, pageSize) => {
         const tempArr = []    
-        for (let i=pageCount ;i>0 ;i--) {
-            tempArr.push(renderMe[index-i])
+        for (let i=0 ;i<pageSize ;i++) {
+            tempArr.unshift(renderMe[index-i])
         }
         return tempArr
     }
 
-    lastPage = (blockCount, renderMe, index) => {
+    lastPage = (renderMe, index, blockCount) => {
         const tempArr = []        
-        for(let i=blockCount; i>0; i--){
-            tempArr.push(renderMe[(index+1)-i])
+        for (let i=0 ;i<blockCount ;i++) {
+            tempArr.unshift(renderMe[index-i])
         }
         return tempArr
     }
