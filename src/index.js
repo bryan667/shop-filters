@@ -4,13 +4,13 @@ import ReactDOM from 'react-dom';
 import Pages from './components/pages'
 import PageButtons from './components/pagebuttons'
 import Accordion from './components/accordion'
+import GridList from './components/grid-list'
 
 import {showFilteredResults} from './misc/function'
 import {Paginate} from './misc/paginate'
 import {itemsFilters, itemsForSaleMain} from './misc/vars'
 
 import './css/styles.css'
-import GridList from './misc/grid-list';
 
 class App extends Component {
     state = {
@@ -128,9 +128,7 @@ class App extends Component {
         const paginate = this.state.paginate
         paginate.currentPage = parseInt(page)
 
-        this.setState({
-            paginate
-        })
+        this.setState({paginate})
     }
 
     leftB =() => {
@@ -138,9 +136,7 @@ class App extends Component {
         const paginate = Paginate(tempPaginate.totalItems, 
                             tempPaginate.currentPage-1, 
                             tempPaginate.pageSize, 5)
-        this.setState({
-            paginate
-        })
+        this.setState({paginate})
     }
 
     rightB =() => {
@@ -148,16 +144,32 @@ class App extends Component {
         const paginate = Paginate(tempPaginate.totalItems, 
                             tempPaginate.currentPage+1, 
                             tempPaginate.pageSize, 5)
-        this.setState({
-            paginate
-        })
+        this.setState({paginate})
+    }
+
+    list = () => {
+        const tempPaginate = {...this.state.paginate}
+        const paginate = Paginate(tempPaginate.totalItems, 
+                            tempPaginate.currentPage, 
+                            5,
+                            5)
+
+        this.setState({ paginate, gridList: 'list'})
+    }
+
+    grid = () => {
+        const tempPaginate = {...this.state.paginate}
+        const paginate = Paginate(tempPaginate.totalItems, 
+                            tempPaginate.currentPage, 
+                            12,
+                            5)
+        this.setState({ paginate, gridList: 'grid'})
     }
 
     render() {
         const {showItems} = this.state
         return (
         <div>
-            {console.log(this.state.paginate)}
             <div className='cont'>
                 <div className='left'>
                     <Accordion
@@ -204,8 +216,9 @@ class App extends Component {
                 />
                 <div>
                     <GridList 
-                        list={()=> {this.setState({ gridList: 'list'})}}
-                        grid={()=> {this.setState({ gridList: 'grid'})}}
+                        list={()=> this.list()}
+                        grid={()=> this.grid()}
+                        state={this.state.gridList}
                     />
                 </div>
             </div>

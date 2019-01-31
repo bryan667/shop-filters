@@ -1,4 +1,3 @@
-/* Style the buttons that are used to open and close the accordion panel */
 .accordion {
     background-color: rgb(204, 204, 204);
     color: #444;
@@ -23,7 +22,6 @@
     background-color: #ccc;
   }
   
-  /* Style the accordion panel. Note: hidden by default */
   .panel {
     padding: 0 18px;
     background-color: rgb(231, 231, 231);
@@ -36,17 +34,29 @@
     cursor: pointer;
   }
 
-  .itemblock {
+  /* container */
+  .pageactive {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .pageactive.list {
+    flex-direction: column;
+  }
+
+  .pageactive.grid {    
+    flex-direction: row;
+  }
+
+  /* block */
+  .pageactive .itemblock {
     background-color: rgb(240, 240, 240);
     border: 3px solid white;
+    flex-basis: 32%;
   }
 
-  .itemblock.list {
-    width: 100%;
-  }
-
-  .itemblock.grid {
-    width: 50%;
+  .pageinactive {
+    display: none;
   }
 
   .label {
@@ -75,24 +85,23 @@
     min-height: 60vh;
   }
 
-  .pagebuttons {
-    padding: 10px;
-    margin-left: 12px;
-  }
-
-  .pagebuttons:hover {
-    background-color: rgb(211, 211, 211);
-    cursor: pointer;
-  }
-
-  .pageactive {
-    display: block;
-  }
-
-  .pageinactive {
-    display: none;
-  }
-
   .buttonactive {
     background-color: rgb(187, 215, 233);
+  }
+
+  button {
+    border: 1px solid rgb(201, 201, 201);
+    outline: none;
+    padding: 1.2rem 1.6rem;
+    background-color: #ececec;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ddd;
+  }
+  
+  button.active {
+    background-color: #666;
+    color: white;
   }
