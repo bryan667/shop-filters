@@ -56,10 +56,10 @@ export const itemsFilters = {
             {name: 'Seagate ', id: 'hdSeagate', subcat: 'brandID'},
         ],
         Type: [
-            {name: 'HDD', id: 'gfxHDD', subcat: 'hdType'},
-            {name: 'SSD', id: 'gfxSSD', subcat: 'hdType'},
+            {name: 'HDD', id: 'hdHDD', subcat: 'hdType'},
+            {name: 'SSD', id: 'hdSSD', subcat: 'hdType'},
         ]
-    } 
+    }   
 }
 
 export const itemsForSaleMain = {
@@ -128,5 +128,14 @@ export const itemsForSaleMain = {
         {id: '9', name: 'Gigabyte AMD Radeon VII', brand: 'Gigabyte', brandID: 'gfxGigabyte', gpuID: 'gfxAMD'},
         {id: '10', name: 'EVGA AMD Radeon VII', brand: 'EVGA', brandID: 'gfxEVGA', gpuID: 'gfxAMD'},
         {id: '11', name: 'Sapphire AMD Radeon VII', brand: 'Sapphire', brandID: 'gfxSapphire', gpuID: 'gfxAMD'},
+    ],
+    HardDrive:[
+        {id: '1', name: 'Seagate BarraCuda 3TB', brand: 'Seagate', brandID: 'hdSeagate', type: 'HDD', hdType: 'hdHDD'},
+        {id: '2', name: 'Seagate BarraCuda 6TB', brand: 'Seagate', brandID: 'hdSeagate', type: 'HDD', hdType: 'hdHDD'},
+        {id: '3', name: 'Western Digital 3TB', brand: 'Western Digital', brandID: 'hdWD', type: 'HDD', hdType: 'hdHDD'},
+        {id: '4', name: 'Corsair SSD 1TB', brand: 'Corsair', brandID: 'hdCorsair', type: 'SSD', hdType: 'hdSSD'},
+        {id: '5', name: 'Samsung EVO SSD 1TB', brand: 'Samsung', brandID: 'hdSamsung', type: 'SSD', hdType: 'hdSSD'},
+        {id: '6', name: 'Samsung EVO SSD 500GB', brand: 'Samsung', brandID: 'hdSamsung', type: 'SSD', hdType: 'hdSSD'},
+        {id: '7', name: 'Samsung EVO SSD 250GB', brand: 'Samsung', brandID: 'hdSamsung', type: 'SSD', hdType: 'hdSSD'},
     ]
 }

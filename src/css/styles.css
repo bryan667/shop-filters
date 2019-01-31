@@ -179,6 +179,22 @@
     margin: auto;
   }
 
+  .itemblock .hddpic {
+    flex: 1;
+    height: 80%;
+    background: url('../misc/images/hdd.jpg') center no-repeat;
+    background-size: contain;
+    margin: auto;
+  }
+
+  .itemblock .ssdpic {
+    flex: 1;
+    height: 80%;
+    background: url('../misc/images/ssd.jpg') center no-repeat;
+    background-size: contain;
+    margin: auto;
+  }
+
   .pageinactive {
     display: none;
   }

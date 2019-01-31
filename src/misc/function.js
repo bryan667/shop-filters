@@ -92,10 +92,33 @@ export const showFilteredResults = (filters, itemsForSale) => {
         })
     }
 
+    //==== HARDDRIVE ====//
+    let finalHD = itemsForSale.HardDrive
+    let tempHD = []
+    for (let key in filters.HardDrive) {
+        if (filters.HardDrive[key].length > 0) {
+            loopHD(key)
+            finalHD =  tempHD
+            tempHD = []
+        }
+    }
+
+    function loopHD(key) {
+        filters.HardDrive[key].forEach((search, i)=> {
+            finalHD.forEach((item, i)=> {
+                if (search === item[key]) {
+                    const index = tempHD.findIndex(x => x.id===item.id)
+                    if (index === -1){tempHD.push(item)}
+                }
+            })
+        })
+    }
+
     newItemSale.Processor = finalProc
     newItemSale.Motherboard = finalMobo
     newItemSale.Memory = finalMem
     newItemSale.GraphicsCard = finalGFX
+    newItemSale.HardDrive = finalHD
 
     return newItemSale
 }

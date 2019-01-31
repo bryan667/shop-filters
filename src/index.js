@@ -29,6 +29,10 @@ class App extends Component {
             GraphicsCard:{
                 brandID: [],
                 gpuID: []
+            },
+            HardDrive:{
+                brandID: [],
+                hdType: []
             }
         },
         itemsForSale: {},
@@ -199,6 +203,12 @@ class App extends Component {
                         category={itemsFilters.GraphicsCard}
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'GraphicsCard')}    
                         showAll={(boolean)=> this.showAll(boolean, 'GraphicsCard')}
+                    />
+                    <Accordion
+                        name={'HardDrive'}
+                        category={itemsFilters.HardDrive}
+                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'HardDrive')}    
+                        showAll={(boolean)=> this.showAll(boolean, 'HardDrive')}
                     />
                 </div>
                 <div className='right'>
