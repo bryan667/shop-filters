@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import Pages from './pages'
+import {Paginate} from './paginate'
 import {showFilteredResults} from './function'
 import {itemsFilters, itemsForSaleMain} from './vars'
 import Accordion from './accordion'
@@ -9,7 +10,6 @@ import Accordion from './accordion'
 import './css/styles.css'
 
 class App extends Component {
-
     state = {
         filters: {
             Processor: {
@@ -30,18 +30,36 @@ class App extends Component {
             Motherboard: true,
             Memory: true,
             items: {}
+        },
+        paginate: {            
+            currentPage: 1,
+            endIndex: 4,
+            endPage: 3,
+            pageSize: 5,
+            pages: [1, 2, 3],
+            startIndex: 0,
+            startPage: 1,
+            totalItems: 11,
+            totalPages: 3,
         }
     }
 
     componentDidMount() {
+        let totalItems = 0
+        for (let key in itemsForSaleMain) {
+            totalItems = totalItems + itemsForSaleMain[key].length
+        }
+        const paginateResults = Paginate(totalItems, 1, 5 /*Pagesize*/, 5)
+
         this.setState({
             itemsForSale: itemsForSaleMain,
             showItems: {
                 Processor: true,
                 Motherboard: true,
                 Memory: true,
-                items: itemsForSaleMain
-            }
+                items: itemsForSaleMain,
+            },
+            paginate: paginateResults
         })
     }
 
@@ -79,16 +97,20 @@ class App extends Component {
     renderShow = () => {
         const tempItemSale = {...this.state.itemsForSale}
         const tempShow = {...this.state.showItems}
+        let totalItems = 0
 
         for (let key in tempItemSale) {
             if (tempShow[key] === false) {
                 tempItemSale[key] = []
             }
+            totalItems = totalItems + tempItemSale[key].length
         }
-
         tempShow.items = tempItemSale
+        const paginateResults = Paginate(totalItems, 1, 5, 5)
+        
         this.setState({            
-            showItems: tempShow
+            showItems: tempShow,
+            paginate: paginateResults
         }) 
     }
 
@@ -96,6 +118,7 @@ class App extends Component {
         const {showItems} = this.state
         return (
         <div>
+            {console.log(this.state.paginate)}
             <div className='cont'>
                 <div>
                     <Accordion
@@ -118,8 +141,9 @@ class App extends Component {
                     />
                 </div>
                 <div>
-                    <Pages 
+                    <Pages  
                         items={showItems.items}
+                        paginate={this.state.paginate}
                     />
                 </div>
             </div>

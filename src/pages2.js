@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 
+
+
 class Pages extends Component {
     state = {
-
+        totalItems: 10,
+        currentPage: 1,
+        pageSize: 5, 
+        maxPages: 5
     }
 
-    //this.props.paginate.currentPage
     renderItems = () => {
         const renderMe = []
+
         for (let key in this.props.items) {
             switch(key) {
                 case 'Processor':
@@ -48,45 +53,38 @@ class Pages extends Component {
                     return null
               }
         }
-        const pageBlocks = this.pageBlocks(renderMe)                       
-        return pageBlocks
+        const pageBlocks = this.pagination(renderMe)
+        const pageButtons = this.renderPageButtons(pageBlocks.pageCount)        
+        const finalPage = <div>
+                            {pageButtons}
+                            {pageBlocks.pageBlocks}
+                          </div>                          
+        return finalPage
     }
 
-    pageBlocks = (renderMe) => {
+    pagination = (renderMe) => {
         const pageBlocks = []
         let blockCount = 0
         let pageCount = 0
-        let pageSize = this.props.paginate.pageSize
-        let activePage = this.props.paginate.currentPage
-
         renderMe.forEach((item, index)=> {
             blockCount++
-            if (index % pageSize === 0 && index !== 0) {
+            if (index % 5 === 0 && index !== 0) {
                 pageCount++
-                blockCount = blockCount - pageSize
-
-                //if this pageBlock is the activePage, apply className .pageactive
-                if (pageCount === activePage) {
-                    pageBlocks.push(
-                        <div className={`.pageactive`} key={`page${pageCount}`}>
-                            Aw
-                            {this.page(renderMe, index, pageSize)}
-                        </div>
-                    )
-                } else {
-                    pageBlocks.push(
-                        <div className={`.pageinactive`} key={`page${pageCount}`}>
-                            Aw
-                            {this.page(renderMe, index, pageSize)}
-                        </div>
-                    )
-                }
-
-
+                blockCount = blockCount -5
+                pageBlocks.push(
+                    <div className={`page${pageCount}`}>
+                        Aw
+                        {renderMe[index-5]}
+                        {renderMe[index-4]}
+                        {renderMe[index-3]}
+                        {renderMe[index-2]}
+                        {renderMe[index-1]}
+                    </div>
+                )
             } else if (index === (renderMe.length-1)) {
                 pageCount++
                 pageBlocks.push(
-                    <div className={`page${pageCount}`} key={`page${pageCount}`}>
+                    <div className={`page${pageCount}`}>
                         Awlast
                         {this.lastPage(blockCount, renderMe, index)}
                     </div>
@@ -96,12 +94,18 @@ class Pages extends Component {
         return pageBlocks
     }
 
-    page = (renderMe, index, pageCount) => {
-        const tempArr = []    
-        for (let i=pageCount ;i>0 ;i--) {
-            tempArr.push(renderMe[index-i])
+    renderPageButtons = (pageCount) => {
+        const pageButtons = []
+        for(let i=1; i<pageCount+1; i++){
+            pageButtons.push(
+                <button 
+                    className='pagebuttons'
+                >
+                {i}
+                </button>
+            )
         }
-        return tempArr
+        return pageButtons
     }
 
     lastPage = (blockCount, renderMe, index) => {
@@ -117,7 +121,7 @@ class Pages extends Component {
             <div>
                 {this.renderItems()}
             </div>
-        )
+        );
     }
 }
 
