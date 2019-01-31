@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class PageButtons extends Component {
-
     renderButtons = () => {
         const buttons = this.props.paginate.pages.map((item, i)=> {
             let activeClass = ''
