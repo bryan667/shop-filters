@@ -41,6 +41,14 @@
     border: 3px solid white;
   }
 
+  .itemblock.list {
+    width: 100%;
+  }
+
+  .itemblock.grid {
+    width: 50%;
+  }
+
   .label {
     text-transform: uppercase;
     background-color: rgb(196, 196, 196);
@@ -55,8 +63,16 @@
     display: flex;
   }
 
-  .cont div {
+  .cont .left{
     flex: 1;
+  }
+
+  .cont .right{
+    flex: 1;
+  }
+
+  .cont {
+    min-height: 60vh;
   }
 
   .pagebuttons {

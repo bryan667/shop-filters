@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import Pages from './pages'
-import PageButtons from './pagebuttons'
-import {Paginate} from './paginate'
-import {showFilteredResults} from './function'
-import {itemsFilters, itemsForSaleMain} from './vars'
-import Accordion from './accordion'
+import Pages from './components/pages'
+import PageButtons from './components/pagebuttons'
+import Accordion from './components/accordion'
+
+import {showFilteredResults} from './misc/function'
+import {Paginate} from './misc/paginate'
+import {itemsFilters, itemsForSaleMain} from './misc/vars'
 
 import './css/styles.css'
+import GridList from './misc/grid-list';
 
 class App extends Component {
     state = {
@@ -42,7 +44,8 @@ class App extends Component {
             startPage: 1,
             totalItems: 47,
             totalPages: 10,
-        }
+        },
+        gridList: 'list'
     }
 
     componentDidMount() {
@@ -132,7 +135,9 @@ class App extends Component {
 
     leftB =() => {
         const tempPaginate = {...this.state.paginate}
-        const paginate = Paginate(tempPaginate.totalItems, tempPaginate.currentPage-1, tempPaginate.pageSize, 5)
+        const paginate = Paginate(tempPaginate.totalItems, 
+                            tempPaginate.currentPage-1, 
+                            tempPaginate.pageSize, 5)
         this.setState({
             paginate
         })
@@ -140,7 +145,9 @@ class App extends Component {
 
     rightB =() => {
         const tempPaginate = {...this.state.paginate}
-        const paginate = Paginate(tempPaginate.totalItems, tempPaginate.currentPage+1, tempPaginate.pageSize, 5)
+        const paginate = Paginate(tempPaginate.totalItems, 
+                            tempPaginate.currentPage+1, 
+                            tempPaginate.pageSize, 5)
         this.setState({
             paginate
         })
@@ -152,7 +159,7 @@ class App extends Component {
         <div>
             {console.log(this.state.paginate)}
             <div className='cont'>
-                <div>
+                <div className='left'>
                     <Accordion
                         name={'Processor'}
                         category={itemsFilters.Processor}
@@ -172,19 +179,33 @@ class App extends Component {
                         showAll={(boolean)=> this.showAll(boolean, 'Memory')}
                     />
                 </div>
+                <div className='right'>
+                    <div>
+                        <Pages  
+                            items={showItems.items}
+                            paginate={this.state.paginate}
+                            gridList={this.state.gridList}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div>
                 <div>
-                    <Pages  
-                        items={showItems.items}
-                        paginate={this.state.paginate}
-                    />
-                    <div>{`Results: ${this.state.paginate.totalItems}`}</div>
+                    {`Results: ${this.state.paginate.totalItems}`}
                 </div>
                 <div>
-                    <PageButtons 
-                        paginate={this.state.paginate}
-                        changePage={(page)=> this.changePage(page)}
-                        leftB={()=> this.leftB() }
-                        rightB={()=> this.rightB()}
+                    {`Showing: ${this.state.paginate.pageSize} per page`}
+                </div>
+                <PageButtons 
+                    paginate={this.state.paginate}
+                    changePage={(page)=> this.changePage(page)}
+                    leftB={()=> this.leftB() }
+                    rightB={()=> this.rightB()}
+                />
+                <div>
+                    <GridList 
+                        list={()=> {this.setState({ gridList: 'list'})}}
+                        grid={()=> {this.setState({ gridList: 'grid'})}}
                     />
                 </div>
             </div>

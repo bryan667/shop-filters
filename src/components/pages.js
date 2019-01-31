@@ -13,7 +13,7 @@ class Pages extends Component {
                 case 'Processor':
                     this.props.items[key].forEach((item)=> (
                         renderMe.push(
-                            <div className='itemblock' key={item.name+item.id}>
+                            <div className={`itemblock ${this.props.gridList}`} key={item.name+item.id}>
                                 <div>Processor</div>
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
@@ -24,7 +24,7 @@ class Pages extends Component {
                 case 'Motherboard':
                     this.props.items[key].forEach((item)=> (
                         renderMe.push(
-                            <div className='itemblock' key={item.name+item.id}>
+                            <div className={`itemblock ${this.props.gridList}`} key={item.name+item.id}>
                                 <div>Motherboard</div>
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
@@ -36,7 +36,7 @@ class Pages extends Component {
                 case 'Memory':
                     this.props.items[key].map((item)=> (
                         renderMe.push(
-                        <div className='itemblock' key={item.name+item.id}>
+                        <div className={`itemblock ${this.props.gridList}`} key={item.name+item.id}>
                             <div>Memory</div>
                             <div>Name: {item.name}</div>
                             <div>Brand: {item.brand}</div>
