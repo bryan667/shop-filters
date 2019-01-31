@@ -5,7 +5,7 @@ class Pages extends Component {
 
     }
 
-    //this.props.paginate.currentPage
+    //classify each item block based on type
     renderItems = () => {
         const renderMe = []
         for (let key in this.props.items) {
@@ -65,37 +65,47 @@ class Pages extends Component {
                 pageCount++
                 blockCount = blockCount - pageSize
 
-                //if this pageBlock is the activePage, apply className .pageactive
+                //if this pageGroup is the currentPage, apply className .pageactive
                 if (pageCount === activePage) {
                     pageBlocks.push(
-                        <div className={`.pageactive`} key={`page${pageCount}`}>
+                        <div className={`pageactive`} key={`page${pageCount}`}>
                             Aw
                             {this.page(renderMe, index, pageSize)}
                         </div>
                     )
                 } else {
                     pageBlocks.push(
-                        <div className={`.pageinactive`} key={`page${pageCount}`}>
+                        <div className={`pageinactive`} key={`page${pageCount}`}>
                             Aw
                             {this.page(renderMe, index, pageSize)}
                         </div>
                     )
                 }
 
-
+            //rendering the last page
             } else if (index === (renderMe.length-1)) {
                 pageCount++
-                pageBlocks.push(
-                    <div className={`page${pageCount}`} key={`page${pageCount}`}>
+                if (pageCount === activePage) {
+                    pageBlocks.push(
+                        <div className={`pageactive`} key={`page${pageCount}`}>
                         Awlast
                         {this.lastPage(blockCount, renderMe, index)}
-                    </div>
-                )
+                        </div>
+                    )
+                } else {
+                    pageBlocks.push(
+                        <div className={`pageinactive`} key={`page${pageCount}`}>
+                        Awlast
+                        {this.lastPage(blockCount, renderMe, index)}
+                        </div>
+                    )
+                }
             }
         })
         return pageBlocks
     }
 
+    //render normal pages and then last page
     page = (renderMe, index, pageCount) => {
         const tempArr = []    
         for (let i=pageCount ;i>0 ;i--) {

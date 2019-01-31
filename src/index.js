@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import Pages from './pages'
+import PageButtons from './pagebuttons'
 import {Paginate} from './paginate'
 import {showFilteredResults} from './function'
 import {itemsFilters, itemsForSaleMain} from './vars'
@@ -114,6 +115,15 @@ class App extends Component {
         }) 
     }
 
+    changePage =(page)=> {
+        const paginate = this.state.paginate
+        paginate.currentPage = parseInt(page)
+
+        this.setState({
+            paginate
+        })
+    }
+
     render() {
         const {showItems} = this.state
         return (
@@ -144,6 +154,12 @@ class App extends Component {
                     <Pages  
                         items={showItems.items}
                         paginate={this.state.paginate}
+                    />
+                </div>
+                <div>
+                    <PageButtons 
+                        paginate={this.state.paginate}
+                        changePage={(page)=> this.changePage(page)}
                     />
                 </div>
             </div>
