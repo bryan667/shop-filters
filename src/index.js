@@ -190,12 +190,6 @@ class App extends Component {
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Memory')}    
                         showAll={(boolean)=> this.showAll(boolean, 'Memory')}
                     />
-                <div>
-                    {`Results: ${this.state.paginate.totalItems}`}
-                </div>
-                <div>
-                    {`Showing: ${this.state.paginate.pageSize} per page`}
-                </div>
                 </div>
                 <div className='right'>
                     <div className='buttongrp'>
@@ -213,6 +207,14 @@ class App extends Component {
                                 leftB={()=> this.leftB() }
                                 rightB={()=> this.rightB()}
                             />
+                        </div>
+                        <div className='results'>
+                            <div>
+                                {`Results: ${this.state.paginate.totalItems}`}
+                            </div>
+                            <div>
+                                {`Showing: ${this.state.paginate.pageSize} items per page`}
+                            </div>
                         </div>
                     </div>
                     <div>

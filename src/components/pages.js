@@ -14,11 +14,16 @@ const Pages = (props)=> {
                                 <div>Processor</div>
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
-                                {item.brand === 'Intel' ? 
-                                    <div className='intelpic'></div>
-                                    :
-                                    <div className='amdpic'></div>
-                                }
+                                <div className='picbox'>
+                                    {item.brand === 'Intel' ? 
+                                        <div className='intelpic'></div>
+                                        :
+                                        <div className='amdpic'></div>
+                                    }
+                                    <div className='desc'>
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                    </div>
+                                </div>
                             </div>
                         )
                     ))                    
@@ -31,7 +36,12 @@ const Pages = (props)=> {
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
                                 <div>Socket: {item.socketID}</div>
-                                <div className='mobopic'></div>
+                                <div className='picbox'>
+                                    <div className='mobopic'></div>
+                                    <div className='desc'>
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                    </div>
+                                </div>
                             </div>
                         )
                     ))
@@ -43,7 +53,12 @@ const Pages = (props)=> {
                             <div>Memory</div>
                             <div>Name: {item.name}</div>
                             <div>Brand: {item.brand}</div>
-                            <div className='mempic'></div>
+                            <div className='picbox'>
+                                <div className='mempic'></div>
+                                <div className='desc'>
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                </div>
+                            </div>
                         </div>
                         )  
                     ))

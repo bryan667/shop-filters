@@ -46,12 +46,14 @@ class Accordion extends Component {
 
             category[subcategory].forEach((items, i)=> (
                 render.push(
-                <div key={`${items.id}`}>
-                    {items.name}
+                <div className='chckcont'>
+                    <div key={`${items.id}`}>
+                        {items.name}
+                    </div>
                     <input type='checkbox'
-                        name={items.id} 
-                        checked={this.state.checked.indexOf(items.id) !== -1}
-                        onChange={()=> this.toggleCheck(items.subcat, items.id)}
+                    name={items.id} 
+                    checked={this.state.checked.indexOf(items.id) !== -1}
+                    onChange={()=> this.toggleCheck(items.subcat, items.id)}
                     />
                 </div>
                 )
@@ -64,19 +66,20 @@ class Accordion extends Component {
         const {name, category} = this.props
         return (
         <React.Fragment>
-                <button className="accordion" 
-                    onClick={() => this.clickAccordion()}>
-                    {name}
-                </button>
-                <div className='showall'>
-                    Show
-                    <input type='checkbox'
-                        defaultChecked={true}
-                        onChange={()=> {
-                            this.checked = !this.checked
-                            this.props.showAll(!this.checked)
-                        }}
-                    />
+                <div className='accordblck'>
+                    <button className="accordion" 
+                        onClick={() => this.clickAccordion()}>
+                        {name}
+                    </button>
+                    <div className='showall'>
+                        <input type='checkbox'
+                            defaultChecked={true}
+                            onChange={()=> {
+                                this.checked = !this.checked
+                                this.props.showAll(!this.checked)
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="panel"
                     id={name}
