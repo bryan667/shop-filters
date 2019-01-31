@@ -14,6 +14,11 @@ const Pages = (props)=> {
                                 <div>Processor</div>
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
+                                {item.brand === 'Intel' ? 
+                                    <div className='intelpic'></div>
+                                    :
+                                    <div className='amdpic'></div>
+                                }
                             </div>
                         )
                     ))                    
@@ -26,6 +31,7 @@ const Pages = (props)=> {
                                 <div>Name: {item.name}</div>
                                 <div>Brand: {item.brand}</div>
                                 <div>Socket: {item.socketID}</div>
+                                <div className='mobopic'></div>
                             </div>
                         )
                     ))
@@ -37,6 +43,7 @@ const Pages = (props)=> {
                             <div>Memory</div>
                             <div>Name: {item.name}</div>
                             <div>Brand: {item.brand}</div>
+                            <div className='mempic'></div>
                         </div>
                         )  
                     ))
@@ -61,38 +68,28 @@ const Pages = (props)=> {
             if (blockCount === pageSize) {
                 pageCount++
                 blockCount = 0
-                //if this pageGroup is the currentPage, apply className .pageactive
-                if (pageCount === activePage) {
-                    pageBlocks.push(
-                        <div className={`pageactive ${props.gridList}`} key={`page${pageCount}`}>
-                            {page(renderMe, index, pageSize)}
-                        </div>
-                    )
-                } else {
-                    pageBlocks.push(
-                        <div className={`pageinactive ${props.gridList}`} key={`page${pageCount}`}>
-                            {page(renderMe, index, pageSize)}
-                        </div>
-                    )
-                }
+                let tempClass = 'inactive'
+                //if this pageGroup is the activePage, apply className .pageactive
+                if (pageCount === activePage) {tempClass = 'active'}
+
+                pageBlocks.push(
+                    <div className={`page${tempClass} ${props.gridList}`} key={`page${pageCount}`}>
+                        {page(renderMe, index, pageSize)}
+                    </div>
+                )
             //rendering the last page
             } else if (index === (renderMe.length-1)) {
                 pageCount++
-                if (pageCount === activePage) {
-                    pageBlocks.push(
-                        <div className={`pageactive ${props.gridList}`} key={`page${pageCount}`}>
-                            {lastPage(renderMe, index, blockCount)}
-                        </div>
-                    )
-                } else {
-                    pageBlocks.push(
-                        <div className={`pageinactive ${props.gridList}`} key={`page${pageCount}`}>
-                            {lastPage(renderMe, index, blockCount)}
-                        </div>
-                    )
+                let tempClass = 'inactive'
+                if (pageCount === activePage) {tempClass = 'active'}
+
+                pageBlocks.push(
+                    <div className={`page${tempClass} ${props.gridList}`} key={`page${pageCount}`}>
+                        {lastPage(renderMe, index, blockCount)}
+                    </div>
+                )
                 }
-            }
-        })
+            })
         return pageBlocks
     }
 

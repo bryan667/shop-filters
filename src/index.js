@@ -190,8 +190,31 @@ class App extends Component {
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Memory')}    
                         showAll={(boolean)=> this.showAll(boolean, 'Memory')}
                     />
+                <div>
+                    {`Results: ${this.state.paginate.totalItems}`}
+                </div>
+                <div>
+                    {`Showing: ${this.state.paginate.pageSize} per page`}
+                </div>
                 </div>
                 <div className='right'>
+                    <div className='buttongrp'>
+                        <div>
+                            <GridList 
+                                list={()=> this.list()}
+                                grid={()=> this.grid()}
+                                state={this.state.gridList}
+                            />
+                        </div>
+                        <div>
+                            <PageButtons 
+                                paginate={this.state.paginate}
+                                changePage={(page)=> this.changePage(page)}
+                                leftB={()=> this.leftB() }
+                                rightB={()=> this.rightB()}
+                            />
+                        </div>
+                    </div>
                     <div>
                         <Pages  
                             items={showItems.items}
@@ -199,27 +222,6 @@ class App extends Component {
                             gridList={this.state.gridList}
                         />
                     </div>
-                </div>
-            </div>
-            <div>
-                <div>
-                    {`Results: ${this.state.paginate.totalItems}`}
-                </div>
-                <div>
-                    {`Showing: ${this.state.paginate.pageSize} per page`}
-                </div>
-                <PageButtons 
-                    paginate={this.state.paginate}
-                    changePage={(page)=> this.changePage(page)}
-                    leftB={()=> this.leftB() }
-                    rightB={()=> this.rightB()}
-                />
-                <div>
-                    <GridList 
-                        list={()=> this.list()}
-                        grid={()=> this.grid()}
-                        state={this.state.gridList}
-                    />
                 </div>
             </div>
         </div>

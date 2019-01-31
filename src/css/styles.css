@@ -51,8 +51,43 @@
   /* block */
   .pageactive .itemblock {
     background-color: rgb(240, 240, 240);
-    border: 3px solid white;
-    flex-basis: 32%;
+    border: 3px solid white;    
+    flex-basis: 25%;
+    padding: 1rem;
+  }
+
+  .pageactive.list .itemblock {
+    height: 16rem;
+  }
+
+  .pageactive.grid .itemblock {
+    font-size: 0.8rem;
+    height: 13rem;
+    text-align: justify;
+  }
+
+  .itemblock .intelpic {
+    height: 80%;
+    background: url('../misc/images/intel.jpg') no-repeat;
+    background-size: contain;
+  }
+
+  .itemblock .amdpic {
+    height: 80%;
+    background: url('../misc/images/amd.jpg') no-repeat;
+    background-size: contain;
+  }
+
+  .itemblock .mobopic {
+    height: 68%;
+    background: url('../misc/images/mobo.jpg') no-repeat;
+    background-size: contain;
+  }
+
+  .itemblock .mempic {
+    height: 80%;
+    background: url('../misc/images/memory.jpg') no-repeat;
+    background-size: contain;
   }
 
   .pageinactive {
@@ -78,7 +113,18 @@
   }
 
   .cont .right{
-    flex: 1;
+    flex: 3;
+  }
+
+  .right .buttongrp div {
+    display: inline-block;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .gridbtn {
+    margin-right: 0.5rem;
   }
 
   .cont {

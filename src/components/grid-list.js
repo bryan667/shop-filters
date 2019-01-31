@@ -29,7 +29,7 @@ const GridList = (props) => {
     }
 
     return (
-        <div>
+        <div className='gridbtn'>
             {renderGridButton()}
         </div>
     )
