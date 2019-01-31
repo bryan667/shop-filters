@@ -63,6 +63,27 @@ const Pages = (props)=> {
                         )  
                     ))
                   break;
+                case 'GraphicsCard':
+                    props.items[key].map((item)=> (
+                        renderMe.push(
+                        <div className={`itemblock`} key={item.name+item.id}>
+                            <div>GraphicsCard</div>
+                            <div>Name: {item.name}</div>
+                            <div>Brand: {item.brand}</div>
+                            <div className='picbox'>
+                                {item.gpuID === 'gfxNVIDIA' ? 
+                                    <div className='nvidiapic'></div>
+                                    :
+                                    <div className='amdgpupic'></div>
+                                }
+                                <div className='desc'>
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                </div>
+                            </div>
+                        </div>
+                        )  
+                    ))
+                break;
                 default:
                     return null
               }

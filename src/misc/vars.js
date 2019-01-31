@@ -33,6 +33,32 @@ export const itemsFilters = {
             {name: '16GB', id: 'ram16GB', subcat: 'ramID'},
             {name: '32GB', id: 'ram32GB', subcat: 'ramID'},
         ]
+    },
+    GraphicsCard:{
+        brands: [
+            {name: 'Asus', id: 'gfxAsus', subcat: 'brandID'},
+            {name: 'MSI', id: 'gfxMSI', subcat: 'brandID'},
+            {name: 'Gigabyte', id: 'gfxGigabyte', subcat: 'brandID'},
+            {name: 'EVGA', id: 'gfxEVGA', subcat: 'brandID'},
+            {name: 'Sapphire', id: 'gfxSapphire', subcat: 'brandID'},
+            {name: 'Inno3d', id: 'gfxInno3d', subcat: 'brandID'},
+        ],
+        GPU: [
+            {name: 'NVIDIA', id: 'gfxNVIDIA', subcat: 'gpuID'},
+            {name: 'AMD', id: 'gfxAMD', subcat: 'gpuID'},
+        ]
+    },
+    HardDrive:{
+        brands: [
+            {name: 'Corsair', id: 'hdCorsair', subcat: 'brandID'},
+            {name: 'Western Digital', id: 'hdWD', subcat: 'brandID'},
+            {name: 'Samsung ', id: 'hdSamsung', subcat: 'brandID'},
+            {name: 'Seagate ', id: 'hdSeagate', subcat: 'brandID'},
+        ],
+        Type: [
+            {name: 'HDD', id: 'gfxHDD', subcat: 'hdType'},
+            {name: 'SSD', id: 'gfxSSD', subcat: 'hdType'},
+        ]
     } 
 }
 
@@ -89,5 +115,18 @@ export const itemsForSaleMain = {
         {id: '18', name: 'G.Skill 4 GB', brand: 'G.Skill', brandID: 'ramGSkill', ramID: 'ram4GB'},
         {id: '19', name: 'G.Skill 8 GB', brand: 'G.Skill', brandID: 'ramGSkill', ramID: 'ram8GB'},
         {id: '20', name: 'G.Skill 16 GB', brand: 'G.Skill', brandID: 'ramGSkill', ramID: 'ram16GB'},
+    ],
+    GraphicsCard:[
+        {id: '1', name: 'ASUS GeForce RTX 2080 Ti', brand: 'Asus', brandID: 'gfxAsus', gpuID: 'gfxNVIDIA'},
+        {id: '2', name: 'MSI GeForce RTX 2080 Ti', brand: 'MSI', brandID: 'gfxMSI', gpuID: 'gfxNVIDIA'},
+        {id: '3', name: 'Gigabyte GeForce RTX 2080 Ti', brand: 'Gigabyte', brandID: 'gfxGigabyte', gpuID: 'gfxNVIDIA'},
+        {id: '4', name: 'EVGA GeForce RTX 2080 Ti', brand: 'EVGA', brandID: 'gfxEVGA', gpuID: 'gfxNVIDIA'},
+        {id: '5', name: 'Sapphire GeForce RTX 2080 Ti', brand: 'Sapphire', brandID: 'gfxSapphire', gpuID: 'gfxNVIDIA'},
+        {id: '6', name: 'Inno3d GeForce RTX 2080 Ti', brand: 'Inno3d', brandID: 'gfxInno3d', gpuID: 'gfxNVIDIA'},
+        {id: '7', name: 'ASUS AMD Radeon VII', brand: 'Asus', brandID: 'gfxAsus', gpuID: 'gfxAMD'},
+        {id: '8', name: 'MSI AMD Radeon VII', brand: 'MSI', brandID: 'gfxMSI', gpuID: 'gfxAMD'},
+        {id: '9', name: 'Gigabyte AMD Radeon VII', brand: 'Gigabyte', brandID: 'gfxGigabyte', gpuID: 'gfxAMD'},
+        {id: '10', name: 'EVGA AMD Radeon VII', brand: 'EVGA', brandID: 'gfxEVGA', gpuID: 'gfxAMD'},
+        {id: '11', name: 'Sapphire AMD Radeon VII', brand: 'Sapphire', brandID: 'gfxSapphire', gpuID: 'gfxAMD'},
     ]
 }

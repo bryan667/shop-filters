@@ -70,9 +70,32 @@ export const showFilteredResults = (filters, itemsForSale) => {
         })
     }
 
+    //==== GFXCARD ====//
+    let finalGFX = itemsForSale.GraphicsCard
+    let tempGFX = []
+    for (let key in filters.GraphicsCard) {
+        if (filters.GraphicsCard[key].length > 0) {
+            loopGFX(key)
+            finalGFX =  tempGFX
+            tempGFX = []
+        }
+    }
+
+    function loopGFX(key) {
+        filters.GraphicsCard[key].forEach((search, i)=> {
+            finalGFX.forEach((item, i)=> {
+                if (search === item[key]) {
+                    const index = tempGFX.findIndex(x => x.id===item.id)
+                    if (index === -1){tempGFX.push(item)}
+                }
+            })
+        })
+    }
+
     newItemSale.Processor = finalProc
     newItemSale.Motherboard = finalMobo
     newItemSale.Memory = finalMem
+    newItemSale.GraphicsCard = finalGFX
 
     return newItemSale
 }

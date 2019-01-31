@@ -46,8 +46,9 @@ class Accordion extends Component {
 
             category[subcategory].forEach((items, i)=> (
                 render.push(
-                <div className='chckcont'>
-                    <div key={`${items.id}`}>
+                <div className='chckcont'
+                    key={`${items.id}`}>
+                    <div>
                         {items.name}
                     </div>
                     <input type='checkbox'

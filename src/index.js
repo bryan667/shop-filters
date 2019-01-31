@@ -25,6 +25,10 @@ class App extends Component {
             Memory:{
                 brandID: [],
                 ramID: []
+            },
+            GraphicsCard:{
+                brandID: [],
+                gpuID: []
             }
         },
         itemsForSale: {},
@@ -189,6 +193,12 @@ class App extends Component {
                         category={itemsFilters.Memory}
                         handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Memory')}    
                         showAll={(boolean)=> this.showAll(boolean, 'Memory')}
+                    />
+                    <Accordion
+                        name={'GraphicsCard'}
+                        category={itemsFilters.GraphicsCard}
+                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'GraphicsCard')}    
+                        showAll={(boolean)=> this.showAll(boolean, 'GraphicsCard')}
                     />
                 </div>
                 <div className='right'>

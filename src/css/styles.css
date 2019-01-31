@@ -15,7 +15,7 @@
     background-color: rgb(132, 177, 231);
     color: rgb(255, 255, 255);
     cursor: pointer;
-    padding: 1.2rem;
+    padding: 1.22rem;
     padding-left: 3rem;
     width: 100%;    
     text-align: left;
@@ -124,6 +124,7 @@
   .picbox .desc{
     flex: 2;
     margin-top: 1.5rem;
+    margin-left: 1rem;
   }
 
   .pageactive.grid .itemblock .picbox .desc{
@@ -158,6 +159,22 @@
     flex: 1;
     height: 80%;
     background: url('../misc/images/memory.jpg') center no-repeat;
+    background-size: contain;
+    margin: auto;
+  }
+
+  .itemblock .nvidiapic {
+    flex: 1;
+    height: 80%;
+    background: url('../misc/images/nvidia.jpg') center no-repeat;
+    background-size: contain;
+    margin: auto;
+  }
+
+  .itemblock .amdgpupic {
+    flex: 1;
+    height: 80%;
+    background: url('../misc/images/amdgpu.jpg') center no-repeat;
     background-size: contain;
     margin: auto;
   }
