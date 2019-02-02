@@ -204,23 +204,8 @@
     height: 35rem;
   }
 
-  .cont {
-    display: flex;
-  }
-
-  .cont .left{
-    flex: 1;
-  }
-
-  .cont .right{
-    flex: 3;
-  }
-
-  .right .buttongrp div {
+  .right div {
     display: inline-block;
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-    margin-bottom: 0.1rem;
   }
 
   .gridbtn {

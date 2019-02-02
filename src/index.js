@@ -5,6 +5,7 @@ import Pages from './components/pages'
 import PageButtons from './components/pagebuttons'
 import Accordion from './components/accordion'
 import GridList from './components/grid-list'
+import {Container, Child, ButtonGroup} from './components/styled-comps'
 
 import {showFilteredResults} from './misc/function'
 import {Paginate} from './misc/paginate'
@@ -174,79 +175,53 @@ class App extends Component {
         this.setState({ paginate, gridList: 'grid'})
     }
 
+    renderAccordion = () => {
+        const tempArr = []
+        for(let key in itemsFilters){
+            tempArr.push(
+            <Accordion
+                name={key}
+                key={key}
+                category={itemsFilters[key]}
+                handleFilters={(id, subcat)=> this.handleFilters(id, subcat, key)}
+                showAll={(boolean)=> this.showAll(boolean, key)}/>
+            )
+        }
+        return tempArr
+    }
+
     render() {
         const {showItems} = this.state
         return (
-        <div>
-            <div className='cont'>
-                <div className='left'>
-                    <Accordion
-                        name={'Processor'}
-                        category={itemsFilters.Processor}
-                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Processor')}
-                        showAll={(boolean)=> this.showAll(boolean, 'Processor')}
+        <Container>
+            <Child left>
+                {this.renderAccordion()}
+            </Child>
+            <Child right>
+                <ButtonGroup>
+                    <GridList 
+                        list={()=> this.list()}
+                        grid={()=> this.grid()}
+                        state={this.state.gridList}
                     />
-                    <Accordion
-                        name={'Motherboard'}
-                        category={itemsFilters.Motherboard}
-                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Motherboard')}
-                        showAll={(boolean)=> this.showAll(boolean, 'Motherboard')}
+                    <PageButtons 
+                        paginate={this.state.paginate}
+                        changePage={(page)=> this.changePage(page)}
+                        leftB={()=> this.leftB() }
+                        rightB={()=> this.rightB()}
                     />
-                    <Accordion
-                        name={'Memory'}
-                        category={itemsFilters.Memory}
-                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'Memory')}    
-                        showAll={(boolean)=> this.showAll(boolean, 'Memory')}
-                    />
-                    <Accordion
-                        name={'GraphicsCard'}
-                        category={itemsFilters.GraphicsCard}
-                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'GraphicsCard')}    
-                        showAll={(boolean)=> this.showAll(boolean, 'GraphicsCard')}
-                    />
-                    <Accordion
-                        name={'HardDrive'}
-                        category={itemsFilters.HardDrive}
-                        handleFilters={(id, subcat)=> this.handleFilters(id, subcat, 'HardDrive')}    
-                        showAll={(boolean)=> this.showAll(boolean, 'HardDrive')}
-                    />
-                </div>
-                <div className='right'>
-                    <div className='buttongrp'>
-                        <div>
-                            <GridList 
-                                list={()=> this.list()}
-                                grid={()=> this.grid()}
-                                state={this.state.gridList}
-                            />
-                        </div>
-                        <div>
-                            <PageButtons 
-                                paginate={this.state.paginate}
-                                changePage={(page)=> this.changePage(page)}
-                                leftB={()=> this.leftB() }
-                                rightB={()=> this.rightB()}
-                            />
-                        </div>
-                        <div className='results'>
-                            <div>
-                                {`Results: ${this.state.paginate.totalItems}`}
-                            </div>
-                            <div>
-                                {`Showing: ${this.state.paginate.pageSize} items per page`}
-                            </div>
-                        </div>
-                    </div>
                     <div>
-                        <Pages  
-                            items={showItems.items}
-                            paginate={this.state.paginate}
-                            gridList={this.state.gridList}
-                        />
+                        {`Results: ${this.state.paginate.totalItems}  `}
+                        {`Showing: ${this.state.paginate.pageSize} items per page`}
                     </div>
-                </div>
-            </div>
-        </div>
+                </ButtonGroup>
+                <Pages  
+                    items={showItems.items}
+                    paginate={this.state.paginate}
+                    gridList={this.state.gridList}
+                />
+            </Child>
+        </Container>
       );
     }
 }
