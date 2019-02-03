@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {AccordBlock, AccordButton, AccordCheck} from '../components/styled-comps'
 
 class Accordion extends Component {
 
@@ -42,21 +43,22 @@ class Accordion extends Component {
     renderCheckboxes = (category) => {
         const render = []        
         for (let subcategory in category) {
-            render.push(<div className='label' key={subcategory}>{subcategory}</div>)
+            render.push(<AccordBlock subcatLabel key={subcategory}>{subcategory}</AccordBlock>)
 
             category[subcategory].forEach((items, i)=> (
                 render.push(
-                <div className='chckcont'
-                    key={`${items.id}`}>
-                    <div>
-                        {items.name}
-                    </div>
-                    <input type='checkbox'
-                    name={items.id} 
-                    checked={this.state.checked.indexOf(items.id) !== -1}
-                    onChange={()=> this.toggleCheck(items.subcat, items.id)}
-                    />
-                </div>
+                    <AccordBlock key={`${items.id}`} checkcont>
+                        <AccordBlock subitems>
+                            {items.name}
+                        </AccordBlock>
+                        <AccordCheck
+                            subitems
+                            type='checkbox'
+                            name={items.id} 
+                            checked={this.state.checked.indexOf(items.id) !== -1}
+                            onChange={()=> this.toggleCheck(items.subcat, items.id)}
+                        />
+                    </AccordBlock>
                 )
             ))
         }
@@ -66,32 +68,29 @@ class Accordion extends Component {
     render() {
         const {name, category} = this.props
         return (
-        <React.Fragment>
-                <div className='accordblck'>
-                    <button className="accordion" 
-                        onClick={() => this.clickAccordion()}>
-                        {name}
-                    </button>
-                    <div className='showall'>
-                        <input type='checkbox'
-                            defaultChecked={true}
-                            onChange={()=> {
-                                this.checked = !this.checked
-                                this.props.showAll(!this.checked)
-                            }}
-                        />
-                    </div>
-                </div>
-                <div className="panel"
-                    id={name}
-                    style={{
-                        display: this.state.display,
-                        maxHeight: this.state.maxHeight                     
-                    }}
-                >
-                    {this.renderCheckboxes(category)}
-                </div>
-        </React.Fragment>
+            <React.Fragment>
+                    <AccordBlock>
+                        <AccordButton onClick={() => this.clickAccordion()}>
+                            {name}
+                        </AccordButton>
+                        <AccordBlock accord>
+                            <AccordCheck 
+                                defaultChecked={true}
+                                onChange={()=> {
+                                    this.Accordchecked = !this.Accordchecked
+                                    this.props.showAll(!this.Accordchecked)
+                                }}
+                            />
+                        </AccordBlock>
+                    </AccordBlock>
+                    <AccordBlock 
+                        panelItems
+                        id={name}
+                        style={{maxHeight: this.state.maxHeight}}
+                    >
+                        {this.renderCheckboxes(category)}
+                    </AccordBlock>
+            </React.Fragment>
         )
     }
 }

@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import {Buttons} from '../components/styled-comps' 
 
 class PageButtons extends Component {
     renderButtons = () => {
-        const buttons = this.props.paginate.pages.map((item, i)=> {
-            let activeClass = ''
+        const buttons = this.props.paginate.pages.map((item)=> {
+            let activeClass = false
+
             if(item === this.props.paginate.currentPage) {
-                activeClass = 'buttonactive'
+                activeClass = true
             }
             
-            return <button
+            return <Buttons
                         onClick={(e)=> this.props.changePage(parseInt(e.target.id))}
                         id={item}
                         key={item}
-                        className={activeClass}
+                        active={activeClass}
                     >{item}
-                    </button>
+                    </Buttons>
         })
         return buttons
     }
@@ -22,13 +24,15 @@ class PageButtons extends Component {
     render() {
         return (
             <div>
-                <button
+                <Buttons
                     onClick={()=> this.props.leftB()}
-                >&lt;</button>
-                {this.renderButtons()}
-                <button
+                >&lt;
+                </Buttons>
+                    {this.renderButtons()}
+                <Buttons
                     onClick={()=> this.props.rightB()}
-                >&gt;</button>
+                >&gt;
+                </Buttons>
             </div>
         );
     }
