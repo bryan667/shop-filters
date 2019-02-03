@@ -5,13 +5,12 @@ import Pages from './components/pages'
 import PageButtons from './components/pagebuttons'
 import Accordion from './components/accordion'
 import GridList from './components/grid-list'
-import {Container, Child, ButtonGroup} from './components/styled-comps'
+import {Container, Child, ButtonGroup, Results} from './components/styled-comps'
 
 import {showFilteredResults} from './misc/function'
 import {Paginate} from './misc/paginate'
 import {itemsFilters, itemsForSaleMain} from './misc/vars'
 
-import './css/styles.css'
 
 class App extends Component {
     state = {
@@ -41,6 +40,8 @@ class App extends Component {
             Processor: true,
             Motherboard: true,
             Memory: true,
+            GraphicsCard: true,
+            HardDrive: true,
             items: {}
         },
         paginate: {            
@@ -192,6 +193,12 @@ class App extends Component {
 
     render() {
         const {showItems} = this.state
+        let total = {}
+        for (let key in showItems.items) {
+            total[key] = ''
+            console.log(total)
+            if(showItems.items[key]){total[key] = showItems.items[key].length}
+        }
         return (
         <Container>
             <Child left>
@@ -210,11 +217,22 @@ class App extends Component {
                         leftB={()=> this.leftB() }
                         rightB={()=> this.rightB()}
                     />
-                    <div>
-                        {`Results: ${this.state.paginate.totalItems}  `}
-                        {`Showing: ${this.state.paginate.pageSize} items per page`}
-                    </div>
                 </ButtonGroup>
+                <Results>
+                        <Results child>
+                            {`Total Results: ${this.state.paginate.totalItems}`}<br/>
+                            {`Items: ${this.state.paginate.pageSize} per page`}
+                        </Results>
+                        <Results child>
+                            {`Processors: ${total.Processor}`}<br/>
+                            {`Motherboard: ${total.Motherboard}`}<br/>
+                            {`Memory: ${total.Memory}`}<br/>
+                        </Results>
+                        <Results child>
+                            {`GraphicsCard: ${total.GraphicsCard}`}<br/>
+                            {`HardDrive: ${total.HardDrive}`}<br/>
+                        </Results>
+                </Results>
                 <Pages  
                     items={showItems.items}
                     paginate={this.state.paginate}

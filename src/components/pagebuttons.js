@@ -23,17 +23,17 @@ class PageButtons extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <Buttons
                     onClick={()=> this.props.leftB()}
                 >&lt;
                 </Buttons>
                     {this.renderButtons()}
-                <Buttons
+                <Buttons marginRight
                     onClick={()=> this.props.rightB()}
                 >&gt;
                 </Buttons>
-            </div>
+            </React.Fragment>
         );
     }
 }

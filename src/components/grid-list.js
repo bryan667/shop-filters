@@ -2,35 +2,34 @@ import React from 'react';
 import {Buttons} from '../components/styled-comps'
 
 const GridList = (props) => {
-    const renderGridButton = () => {
-        let classList = false
-        let classGrid = false       
-        
-        if (props.state === 'list') {
-            classList = true
-        } else if (props.state === 'grid') {
-            classGrid = true
-        }
+    let activeButton = []
 
-        return <React.Fragment>
+    const readProps = () => {
+        if (props.state === 'list') {
+            activeButton[0] = true
+            activeButton[1] = false
+        } else {
+            activeButton[0] = false
+            activeButton[1] = true
+        } 
+    }
+
+    return (
+        <React.Fragment>
+            {readProps()}
             <Buttons onClick={()=> props.list()}
-                active={classList}>
+                active={activeButton[0]}>
                 <i className="fa fa-bars"></i>
                 List
             </Buttons>
             <Buttons onClick={()=> props.grid()}
-                active={classGrid}
+                active={activeButton[1]}
+                marginRight
             >
                 <i className="fa fa-th-large"></i>
                 Grid
             </Buttons>
         </React.Fragment>
-    }
-
-    return (
-        <div className='gridbtn'>
-            {renderGridButton()}
-        </div>
     )
 }
 

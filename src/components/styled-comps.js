@@ -2,19 +2,31 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     display: flex;
+    font-size: 0.9rem;
+    font-family: "Lato", "Times New Roman";
 `
 export const Child = styled.div`
-    ${props => props.left ? "flex: 1" : "flex: 3"}
-    
+    ${props => props.left ? `
+        flex: 1
+        margin-right:0.5rem; 
+    ` : 
+    `flex: 3`}
+`
+
+export const Results = styled.div`
+    display: flex;
+    width: 25rem;
+    ${props => props.child && `
+        margin: 0.5rem;
+        flex: 1;`
+    }
 `
 
 // ============ BUTTONS ============ //
 
 export const ButtonGroup = styled.div`
+    height: 3.5rem; 
     display: flex;
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-    margin-bottom: 0.1rem;
 `
 
 export const Buttons = styled.button`
@@ -30,6 +42,10 @@ export const Buttons = styled.button`
     ${props => props.active ? 
         `background-color: rgb(187, 215, 233);` :
         ''
+    }
+
+    ${props => props.marginRight && `
+        margin-right: 1rem;`
     }
 `
 
@@ -107,4 +123,61 @@ export const AccordButton = styled.button`
     }
 `
 
+// ============ ITEMS ============ //
 
+
+export const PageContainer = styled.div `
+    flex-wrap: wrap;
+
+    ${props => props.active ? `
+        display: flex;` 
+        :        
+        'display: none;'
+    }
+
+    ${props => props.grid==='grid' ? `
+        flex-direction: row;`
+        :        
+        'flex-direction: column;'
+    }
+`
+export const ItemBlock = styled.div `
+    background-color: rgb(240, 240, 240);
+    border: 0.25rem solid white;
+    flex-basis: 25%;
+    padding: 1rem;
+`
+
+export const ItemDetails = styled.div `
+`
+
+export const PicAndDesc = styled.div `
+    display: flex;
+    font-size: 0.8rem;
+    height: 13rem;
+    text-align: justify;
+`
+
+export const Pics = styled.div `
+    flex: 1;
+    height: 80%;
+    margin: auto;
+    ${props => props.img ? `
+        background: url(${process.env.PUBLIC_URL}/images/${props.img}) center no-repeat;
+        background-size: contain;
+        `
+        :
+        ''
+    }
+`
+
+export const Descript = styled.div `
+    flex: 2;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    ${props => props.grid ==='grid' ? `
+    display: none;`
+    :
+    'display: block;'
+}
+`

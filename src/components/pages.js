@@ -1,7 +1,7 @@
 import React from 'react';
+import {PageContainer, ItemBlock, ItemDetails, PicAndDesc, Pics, Descript} from '../components/styled-comps'
 
 const Pages = (props)=> {
-
     //classify each item block based on type
     const renderItems = () => {
         const renderMe = []
@@ -10,99 +10,109 @@ const Pages = (props)=> {
                 case 'Processor':
                     props.items[key].forEach((item)=> (
                         renderMe.push(
-                            <div className={`itemblock`} key={item.name+item.id}>
-                                <div>Processor</div>
-                                <div>Name: {item.name}</div>
-                                <div>Brand: {item.brand}</div>
-                                <div className='picbox'>
+                            <ItemBlock key={item.name+item.id}>
+                                <ItemDetails>
+                                    Processor<br/>
+                                    Name: {item.name}<br/>
+                                    Brand: {item.brand}<br/>
+                                </ItemDetails>
+                                <PicAndDesc>
                                     {item.brand === 'Intel' ? 
-                                        <div className='intelpic'></div>
+                                        <Pics img='intel.jpg'></Pics>
                                         :
-                                        <div className='amdpic'></div>
+                                        <Pics img='amd.jpg'></Pics>
                                     }
-                                    <div className='desc'>
+                                    <Descript grid={props.gridList}>
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                    </div>
-                                </div>
-                            </div>
+                                    </Descript>
+                                </PicAndDesc>
+                            </ItemBlock>
                         )
                     ))                    
                   break;
                 case 'Motherboard':
                     props.items[key].forEach((item)=> (
                         renderMe.push(
-                            <div className={`itemblock`} key={item.name+item.id}>
-                                <div>Motherboard</div>
-                                <div>Name: {item.name}</div>
-                                <div>Brand: {item.brand}</div>
-                                <div>Socket: {item.socketID}</div>
-                                <div className='picbox'>
-                                    <div className='mobopic'></div>
-                                    <div className='desc'>
+                            <ItemBlock key={item.name+item.id}>
+                                <ItemDetails>
+                                    Motherboard<br/>
+                                    Name: {item.name}<br/>
+                                    Brand: {item.brand}<br/>
+                                    Socket: {item.socketID}<br/>
+                                </ItemDetails>
+                                <PicAndDesc>
+                                    <Pics img='mobo.jpg'></Pics>
+                                    <Descript grid={props.gridList}>
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                    </div>
-                                </div>
-                            </div>
+                                    </Descript>
+                                </PicAndDesc>
+                            </ItemBlock>
                         )
                     ))
                   break;
                 case 'Memory':
                     props.items[key].map((item)=> (
                         renderMe.push(
-                        <div className={`itemblock`} key={item.name+item.id}>
-                            <div>Memory</div>
-                            <div>Name: {item.name}</div>
-                            <div>Brand: {item.brand}</div>
-                            <div className='picbox'>
-                                <div className='mempic'></div>
-                                <div className='desc'>
+                            <ItemBlock key={item.name+item.id}>
+                                <ItemDetails>
+                                    Memory<br/>
+                                    Name: {item.name}<br/>
+                                    Brand: {item.brand}<br/>
+                                </ItemDetails>
+                                <PicAndDesc>
+                                    <Pics img='memory.jpg'></Pics>
+                                    <Descript grid={props.gridList}>
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                </div>
-                            </div>
-                        </div>
+                                    </Descript>
+                                </PicAndDesc>
+                            </ItemBlock>
                         )  
                     ))
                   break;
                 case 'GraphicsCard':
                     props.items[key].map((item)=> (
                         renderMe.push(
-                        <div className={`itemblock`} key={item.name+item.id}>
-                            <div>GraphicsCard</div>
-                            <div>Name: {item.name}</div>
-                            <div>Brand: {item.brand}</div>
-                            <div className='picbox'>
-                                {item.gpuID === 'gfxNVIDIA' ? 
-                                    <div className='nvidiapic'></div>
-                                    :
-                                    <div className='amdgpupic'></div>
-                                }
-                                <div className='desc'>
+                            <ItemBlock key={item.name+item.id}>
+                                <ItemDetails>
+                                    GraphicsCard<br/>
+                                    Name: {item.name}<br/>
+                                    Brand: {item.brand}<br/>
+                                </ItemDetails>
+                                <PicAndDesc>
+                                    {item.gpuID === 'gfxNVIDIA' ? 
+                                        <Pics img='nvidia.jpg'></Pics>
+                                        :
+                                        <Pics img='amdgpu.jpg'></Pics>
+                                    }
+                                    <Descript grid={props.gridList}>
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                </div>
-                            </div>
-                        </div>
+                                    </Descript>
+                                </PicAndDesc>
+                            </ItemBlock>
                         )  
                     ))
                 break;
                 case 'HardDrive':
                     props.items[key].map((item)=> (
                         renderMe.push(
-                        <div className={`itemblock`} key={item.name+item.id}>
-                            <div>HardDrive</div>
-                            <div>Name: {item.name}</div>
-                            <div>Brand: {item.brand}</div>
-                            <div>Type: {item.type}</div>
-                            <div className='picbox'>
-                                {item.hdType === 'hdHDD' ? 
-                                    <div className='hddpic'></div>
-                                    :
-                                    <div className='ssdpic'></div>
-                                }
-                                <div className='desc'>
+                            <ItemBlock key={item.name+item.id}>
+                                <ItemDetails>
+                                    HardDrive<br/>
+                                    Name: {item.name}<br/>
+                                    Brand: {item.brand}<br/>
+                                    Type: {item.type}
+                                </ItemDetails>
+                                <PicAndDesc>
+                                    {item.hdType === 'hdHDD' ? 
+                                        <Pics img='hdd.jpg'></Pics>
+                                        :
+                                        <Pics img='ssd.jpg'></Pics>
+                                    }
+                                    <Descript grid={props.gridList}>
                                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                                </div>
-                            </div>
-                        </div>
+                                    </Descript>
+                                </PicAndDesc>
+                            </ItemBlock>
                         )  
                     ))
                 break;
@@ -126,25 +136,33 @@ const Pages = (props)=> {
             if (blockCount === pageSize) {
                 pageCount++
                 blockCount = 0
-                let tempClass = 'inactive'
+                let tempClass = false
                 //if this pageGroup is the activePage, apply className .pageactive
-                if (pageCount === activePage) {tempClass = 'active'}
+                if (pageCount === activePage) {tempClass = true}
 
                 pageBlocks.push(
-                    <div className={`page${tempClass} ${props.gridList}`} key={`page${pageCount}`}>
+                    <PageContainer 
+                        active={tempClass}
+                        grid={props.gridList}
+                        key={`page${pageCount}`}
+                    >
                         {page(renderMe, index, pageSize)}
-                    </div>
+                    </PageContainer>
                 )
             //rendering the last page
             } else if (index === (renderMe.length-1)) {
                 pageCount++
-                let tempClass = 'inactive'
-                if (pageCount === activePage) {tempClass = 'active'}
+                let tempClass = false
+                if (pageCount === activePage) {tempClass = true}
 
                 pageBlocks.push(
-                    <div className={`page${tempClass} ${props.gridList}`} key={`page${pageCount}`}>
+                    <PageContainer 
+                        active={tempClass}
+                        grid={props.gridList}
+                        key={`page${pageCount}`}
+                    >
                         {lastPage(renderMe, index, blockCount)}
-                    </div>
+                    </PageContainer>
                 )
                 }
             })
@@ -169,9 +187,9 @@ const Pages = (props)=> {
     }
 
     return (
-            <div>
+            <React.Fragment>
                 {renderItems()}
-            </div>
+            </React.Fragment>
     )
 }
 
